@@ -1,5 +1,5 @@
 use std::io;
-mod utils;
+
 fn check_vertical(table: &Vec<[char;3]>, x: usize, y: usize) -> bool{
     if table[x][y] == 'o' || table[x][y] == 'x' {
         if table[x][y] == table[x+1][y] && table[x+1][y] == table[x+2][y] {
@@ -63,8 +63,8 @@ fn get_coordinates() -> (usize, usize){
     let mut guess = String::new();
     io::stdin().read_line(&mut guess).unwrap();
     let mut iterat = guess.split_whitespace();
-    let x = iterat.next().unwrap().parse::<usize>().unwrap();
-    let y = iterat.next().unwrap().parse::<usize>().unwrap();
+    let x = iterat.next().unwrap().parse::<usize>().unwrap_or(3);
+    let y = iterat.next().unwrap().parse::<usize>().unwrap_or(3); 
     return (x,y);
 }
 fn main(){
@@ -95,7 +95,7 @@ fn main(){
             return;
         }
         _i+=1;
-    }
+    } 
     println!("It's a draw :(");
 }
 
